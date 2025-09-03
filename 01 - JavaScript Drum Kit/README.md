@@ -22,7 +22,27 @@ and other required files like sounds and images
 ---
 
 ## 🧑‍💻 Key Learnings
-- 
+Using data-* attributes
+In the drum kit, we need to link a key (like A, S, D) with an audio file.
+HTML allows custom attributes starting with data-
+
+display: flex → make children flexible boxes.
+justify-content: center → horizontal centering.
+align-items: center → vertical centering.
+min-height: 100vh → take full screen height.
+
+Template literals `audio[data-key="${e.keyCode}"]` let us dynamically select the matching audio.
+audio.currentTime = 0 ensures fast replay.
+key.classList.add("playing") applies the CSS animation.
+
+Problem Discovered: “Stuck Keys”
+If you hold a key down, .playing sometimes stays applied.
+Why? Because:
+keydown keeps firing.
+.playing is already added → transition doesn’t restart.
+transitionend never fires again → so removal doesn’t happen.
+
+what i do:- window.addEventListener("keyup", removePlaying);
 
 ---
 
